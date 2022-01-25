@@ -58,7 +58,12 @@ firebase.initializeApp(firebaseConfig);
     
         // Push to Firebase Database
         database_ref.child('users/' + user.uid).set(user_data)
-    
+        
+        firebase.auth().currentUser.sendEmailVerification()
+        .then(() => {
+          alert("User Verification e-mail sent. Please verify your account before you login!")
+        });
+
         // Done
         alert('Sign-Up Successfull!!')
       })
@@ -90,9 +95,10 @@ firebase.initializeApp(firebaseConfig);
     
       auth.signInWithEmailAndPassword(email, password)
       .then(function() {
-        // Declare user variable
         var user = auth.currentUser
-    
+        var userVerified = user.emailVerified;
+        if(userVerified){
+        
         // Add this user to Firebase Database
         var database_ref = database.ref()
     
@@ -106,6 +112,13 @@ firebase.initializeApp(firebaseConfig);
     
         // Done
         alert('Log-in Successfull!')
+        }
+        else{
+          firebase.auth().currentUser.sendEmailVerification()
+        .then(() => {
+        });
+          throw new verificationError("Your e-mail is not verified with us! Please verify your e-mail first. Verification link already sent!")
+        }
     
       })
       .catch(function(error) {
@@ -210,3 +223,10 @@ let mainF = (e) => {
 }
 
 window.addEventListener("load", mainF);
+
+class verificationError extends Error {
+  constructor(message) {
+    super(message)
+    this.name = "VerificationError";
+  }
+}
