@@ -14,8 +14,8 @@ var firebaseConfig = {
     appId: "1:525038746361:web:98e251049a7f01a409c028"
     };
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
     // Initialize variables
     const auth = firebase.auth()
@@ -157,6 +157,19 @@ var firebaseConfig = {
       }
     }
 
+function forgotPassword(){
+  email = document.getElementById('email3').value
+  firebase.auth().sendPasswordResetEmail(email)
+  .then(() => {
+    alert("Password reset link has been sent to your e-mail!")
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    alert(errorMessage)
+  });
+}
 
 
 
