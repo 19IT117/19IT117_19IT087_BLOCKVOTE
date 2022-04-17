@@ -37,4 +37,3 @@ contract VerifyCertificate {
         return proofs[proof];
     }
 }
-
