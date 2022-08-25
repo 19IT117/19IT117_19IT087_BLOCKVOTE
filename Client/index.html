@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+  <title>VeriFile</title>
+  <link rel="icon" type="image/png" href="./img/results.png">
+  <link rel="stylesheet" href="./style.css">
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:100' rel='stylesheet' type='text/css'>
+    <body>
+    <div class="center">
+        
+        <p class="head">Welcome to VeriFile!</p>
+        <p class="data">VeriFile is a software application for issuing and verifying tamper-proof digital documents. It uses a patent-filed, blockchain-based system that makes it free from any kind of central failure, security lapses, and budget-constraints. Documents issued by VeriFile can be verified from anywhere around the world, in just a matter of seconds.</p>
+    
+        <button class="blue-btn btn" onclick="sendToDashboard()">Verifier</button>
+        <button class="blue-btn btn" onclick="sendToLogin()">Issuer</button>
+
+
+    </div>
+    <script>
+        function sendToLogin() {
+            location.href = "login_signup/loginAndSignUp.html";
+        }
+
+        function sendToDashboard() {
+            location.href = "dashboard/dashboard.html";
+        }
+        </script>
+    </body>
+</html>
