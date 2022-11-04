@@ -8,10 +8,12 @@ contract Verifile {
     constructor(){
         issuer = msg.sender;
     }
+
     function issue(bytes memory file_hash) public {
         require(msg.sender == issuer,"Invalid Issuer");
         storeProof(file_hash);
     }
+    
     function revoke(bytes memory file_hash) public {
         require(msg.sender == issuer , "Invalid Revoker");
         revokeProof(file_hash);
@@ -21,9 +23,10 @@ contract Verifile {
         require(bytes(proof).length > 0,"You cannot upload blank hash");
         proofs[proof] = true;
     }
+    
     function revokeProof(bytes memory proof) private {
         require(bytes(proof).length > 0,"You cannot upload blank hash");
-        proofs[proof] = true;
+        proofs[proof] = false;
     }
 
     function verifyCertificate(bytes memory file_hash) public view returns (bool) {
